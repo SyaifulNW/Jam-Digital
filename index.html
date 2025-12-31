@@ -17,8 +17,7 @@
         }
 
         body {
-            /* Deep Night Sky Background */
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            background: transparent;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -27,6 +26,11 @@
             overflow: hidden;
             color: white;
             position: relative;
+        }
+
+        #stars-container,
+        canvas {
+            display: none !important;
         }
 
         /* Stars Background */
