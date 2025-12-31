@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Jam Digital RGB - Tahun Baru 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at top, #111 0%, #000 70%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+.container {
+    text-align: center;
+}
+
+.title {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, red, yellow, lime, cyan, blue, magenta, red);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rgbText 6s linear infinite;
+}
+
+.clock {
+    font-size: 5.5rem;
+    padding: 25px 50px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.7);
+    box-shadow:
+        0 0 25px red,
+        0 0 45px cyan,
+        0 0 75px magenta;
+    animation: rgbGlow 4s linear infinite;
+}
+
+.date {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    opacity: 0.85;
+}
+
+@keyframes rgbGlow {
+    0% {
+        box-shadow:
+        0 0 20px red,
+        0 0 40px yellow,
+        0 0 60px red;
+    }
+    33% {
+        box-shadow:
+        0 0 20px cyan,
+        0 0 40px blue,
+        0 0 60px cyan;
+    }
+    66% {
+        box-shadow:
+        0 0 20px magenta,
+        0 0 40px purple,
+        0 0 60px magenta;
+    }
+    100% {
+        box-shadow:
+        0 0 20px red,
+        0 0 40px yellow,
+        0 0 60px red;
+    }
+}
+
+@keyframes rgbText {
+    0% { background-position: 0%; }
+    100% { background-position: 400%; }
+}
+
+/* Efek bintang */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 4s infinite ease-in-out;
+    opacity: 0.7;
+}
+
+@keyframes twinkle {
+    0%,100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="title">✨ HAPPY NEW YEAR 2026 ✨</div>
+    <div class="clock" id="clock">00:00:00</div>
+    <div class="date" id="date">1 Januari 2026</div>
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+
+    let h = String(now.getHours()).padStart(2, '0');
+    let m = String(now.getMinutes()).padStart(2, '0');
+    let s = String(now.getSeconds()).padStart(2, '0');
+
+    document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+
+    document.getElementById('date').textContent =
+        now.toLocaleDateString('id-ID', options);
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+/* Generate bintang */
+for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.animationDelay = Math.random() * 5 + 's';
+    document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
